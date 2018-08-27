@@ -42,15 +42,38 @@ new Vue({
 new Vue({
   el: '#exercise4',
   data: {
-    onhighlight: false,
-    onshrink: false
+  effectClasses: {
+    highlight: false,
+    shrink: true
+   },
+   float: 'float', //'float' pointing css .float
+   userClass: '',
+   isVisible: true, //all strings are all true(even you input false, it is true)
+   myStyle: {
+     width: '100px',
+     height: '150px',
+     backgroundColor: 'gray'
+   },
+   progressBar: {
+     width: '0px',
+     backgroudColor: 'red',
+   }
   },
   methods: {
     startEffect: function() {
-      return {
-        highlight: this.onhighlight,
-        shrink: !this.onshrink
-      }
+      var vm = this;
+      setInterval(function(){
+        vm.effectClasses.highlight = !vm.effectClasses.highlight;
+        vm.effectClasses.shrink = !vm.effectClasses.shrink;
+       }, 1000);
+     },
+     startProgress: function() {
+       var vm = this;
+       var width =0;
+       setInterval(function(){
+         width = width + 10;
+         vm.progressBar.width = width + 'px'
+       }, 500)
+     }
     }
-  }
 });
